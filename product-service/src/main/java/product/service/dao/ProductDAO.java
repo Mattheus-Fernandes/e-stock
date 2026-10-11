@@ -33,4 +33,13 @@ public class ProductDAO {
                 .setParameter("created_at", product.getCreatedAt())
                 .executeUpdate();
     }
+
+    public boolean existsProduct(String name, String brand) {
+
+        return (Boolean) entityManager
+                .createNamedQuery(ProductQueries.EXISTS_PRODUCT_BY_NAME_NAME)
+                .setParameter("name", name)
+                .setParameter("brand", brand)
+                .getSingleResult();
+    }
 }

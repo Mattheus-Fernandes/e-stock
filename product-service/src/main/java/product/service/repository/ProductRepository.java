@@ -14,4 +14,8 @@ public class ProductRepository {
     public void save(Product product) {
         productDAO.insert(product);
     }
+
+    public boolean findProductByName(String name, String brand) {
+        return productDAO.existsProduct(name, brand);
+    }
 }
