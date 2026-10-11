@@ -1,24 +1,33 @@
 package product.service.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import io.smallrye.common.constraint.NotNull;
+import jakarta.persistence.*;
+import product.service.utils.ProductQueries;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "products")
+@NamedNativeQueries(
+        @NamedNativeQuery(
+                name = ProductQueries.INSERT_PRODUCT_NAME,
+                query = ProductQueries.INSERT_PRODUCT_QUERY
+        )
+)
 public class Product {
 
     @Id
+    @NotNull
     @Column(name = "id", nullable = false)
     private UUID id;
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+    @NotNull
     @Column(name = "brand", nullable = false)
     private String brand;
+    @NotNull
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
