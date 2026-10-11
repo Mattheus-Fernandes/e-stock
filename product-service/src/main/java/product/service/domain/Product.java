@@ -1,16 +1,20 @@
 package product.service.domain;
 
 import io.smallrye.common.constraint.NotNull;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import product.service.utils.ProductQueries;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "products")
+@NamedNativeQueries(
+        @NamedNativeQuery(
+                name = ProductQueries.INSERT_PRODUCT_NAME,
+                query = ProductQueries.INSERT_PRODUCT_QUERY
+        )
+)
 public class Product {
 
     @Id
