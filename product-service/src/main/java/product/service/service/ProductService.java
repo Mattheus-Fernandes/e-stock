@@ -13,15 +13,15 @@ public class ProductService {
     @Inject
     private ProductRepository productRepository;
 
+    @Transactional
     public void addNewProduct(Product product) {
         validateProduct(product);
 
         productRepository.save(product);
     }
 
-    @Transactional
     private void validateProduct(Product product) {
-        boolean existsProduct = productRepository.findProductByName(product.getName(), product.getName());
+        boolean existsProduct = productRepository.findProductByName(product.getName(), product.getBrand());
 
         if(existsProduct) {
             throw new RuntimeException("Produto já cadastrado");
