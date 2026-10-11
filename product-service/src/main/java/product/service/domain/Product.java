@@ -9,12 +9,16 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "products")
-@NamedNativeQueries(
+@NamedNativeQueries({
         @NamedNativeQuery(
                 name = ProductQueries.INSERT_PRODUCT_NAME,
                 query = ProductQueries.INSERT_PRODUCT_QUERY
+        ),
+        @NamedNativeQuery(
+                name = ProductQueries.EXISTS_PRODUCT_BY_NAME_NAME,
+                query = ProductQueries.EXISTS_PRODUCT_BY_NAME_QUERY
         )
-)
+})
 public class Product {
 
     @Id
